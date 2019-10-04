@@ -19,8 +19,9 @@ $ docker build -t dnscrypt-proxy .
 2. Next, assuming you configured the config `toml` to use port 5300, you can test run the image: 
 
 ```
-$ docker run -d -it --net=host -v /path/to/your/dnscrypt-proxy.toml:/opt/dnscrypt-proxy/dnscrypt-proxy.toml dncrypt-proxy
+$ docker run -d -it --rm --name=dnscrypt-proxy --net=host -v /path/to/your/dnscrypt-proxy.toml:/opt/dnscrypt-proxy/dnscrypt-proxy.toml dncrypt-proxy
 $ nslookup -port=5300 google.com 127.0.0.1
+$ docker rm -f dnscrypt-proxy
 ```
 
 #### Note: We will get better performance in the host network namespace. 
