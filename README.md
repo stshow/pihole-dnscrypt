@@ -7,7 +7,7 @@ https://github.com/pi-hole/pi-hole/wiki/DNSCrypt-2.0
 
 I then created a [Docker Compose](https://docs.docker.com/compose/install/) file to quickly bring up the two containers. At this point, it is still necessary to add a custom DNS server for `127.0.0.1#5300` in Pi-Hole, to ensure private DNS queries. 
 
-### Building the DNSCrypt image: 
+### Building the DNSCrypt image and running it: 
 
 1. Place the attached `Dockerfile` in the directory you would like to build in. 
 
@@ -24,3 +24,10 @@ $ nslookup -port=5300 google.com 127.0.0.1
 
 
 # Work in progress. Please check back!
+
+## To Do
+- Explain how I leverage environment variables to populate the Compose file similar to [this article](https://success.docker.com/article/how-to-leverage-variables-in-a-stack-file).
+- Test the steps to make sure they actually work!
+- Include my syntax for running `docker-compose`. 
+- Provide syntax for building the image. 
+- Consider updating the compose file so that it automates the build. 
