@@ -1,0 +1,41 @@
+version: "3"
+
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    # Host mode has the best performance, though less secure on a shared host.
+    network_mode: "host"
+    # Not necessary in the host network namespace. 
+    # ports:
+    #   - "53:53/tcp"
+    #   - "53:53/udp"
+    #   - "67:67/udp"
+    #   - "80:80/tcp"
+    #   - "443:443/tcp"
+    environment:
+      TZ: 'America/New_York'
+      WEBPASSWORD: ${PASSWORD}
+      #WEB_PORT: 8888
+      ServerIP: ${SERVER_IPADDR}
+      INTERFACE: ${PRIMARY_INT}
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+
+  dnscrypt-proxy:
+    image: stshow/dnscrypt-proxy
+    network_mode: "host"
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    restart: unless-stopped
