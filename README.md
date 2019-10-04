@@ -9,7 +9,10 @@ I then created a [Docker Compose](https://docs.docker.com/compose/install/) file
 
 ### Building the DNSCrypt image and running it: 
 
-1. Place the attached `Dockerfile` in the directory you would like to build in. 
+1. Place the attached `Dockerfile` in the directory you would like to build in and run: 
+```
+$ docker build -t dnscrypt-proxy .
+```
 
 #### Note: it is possible to automate the build with `docker-compose`. 
 
@@ -29,5 +32,4 @@ $ nslookup -port=5300 google.com 127.0.0.1
 - Explain how I leverage environment variables to populate the Compose file similar to [this article](https://success.docker.com/article/how-to-leverage-variables-in-a-stack-file).
 - Test the steps to make sure they actually work!
 - Include my syntax for running `docker-compose`. 
-- Provide syntax for building the image. 
 - Consider updating the compose file so that it automates the build. 
